@@ -15,7 +15,7 @@ const Navbar = () => {
           <Link to="/venues">Venues</Link>
         </li>
         <li className='mt-4'>
-          <Link to="/booking">Create booking</Link>
+          <Link to="/CreateBooking">Create booking</Link>
         </li>
 
         <li className='mt-4'>
