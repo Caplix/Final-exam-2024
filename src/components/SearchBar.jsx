@@ -2,8 +2,8 @@ import React from 'react';
 
 const SearchBar = () => {
   return (
-    <div className="fixed top-0  w-full bg-purple-900  p-4 z-10">
-      {/* Your search bar content */}
+    <div className="top-0  w-full bg-purple-900  p-4 z-10">
+
       <input
         type="text"
         placeholder="Search..."
