@@ -21,7 +21,6 @@ function Star ({starType}){
 
   let starStatus;
 
-console.log(starType, "stjernetype")
 
 
 if (starType === 0){

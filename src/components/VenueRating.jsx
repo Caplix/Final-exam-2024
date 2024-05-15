@@ -4,7 +4,6 @@ import Star from './Star';
 
 
 function VenueRating({rating}) {
-    console.log(rating)
 
     let ratingArray = [0,0,0,0,0]
 
@@ -26,7 +25,6 @@ function VenueRating({rating}) {
         ratingArray[stars + i] =2;
     }
 
-    console.log(ratingArray, "rating array")
 
 
 return (
@@ -38,7 +36,6 @@ return (
   
   {ratingArray.map((starType)=>{
     
-    {console.log(starType)}
     
             return <Star starType={starType}/>
             

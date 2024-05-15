@@ -9,6 +9,7 @@ import Venues from './Pages/Venues';
 import CreateBooking from './Pages/CreateBooking';
 import Register from './Pages/Register';
 import LogIn from './Pages/LogIn';
+import SpecificVenue from './Pages/SpecificVenue';
 
 import SearchBar from './components/SearchBar';
 
@@ -34,7 +35,7 @@ const App = () => {
               <Route path="/CreateBooking" element={<CreateBooking />} />
               <Route path="/Register" element={<Register />} />
               <Route path="/LogIn" element={<LogIn />} />
-
+              <Route path="/SpecificVenue/:venueId" element={<SpecificVenue/>}/>
             </Routes>
           </div>
         </div>
