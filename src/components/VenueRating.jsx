@@ -27,29 +27,18 @@ function VenueRating({rating}) {
 
 
 
-return (
-    <div className='absolute flex mt-2 ml-2'>
-            <div className=" flex bg-white/[.9] rounded px-2  ">{rating}</div>
-
-    <div className=" flex justify-between bg-white/[.9] w-28 rounded px-2 ml-1 ">
-
-  
-  {ratingArray.map((starType)=>{
-    
-    
-            return <Star starType={starType}/>
-            
-
-
-        })} 
-                
-
-    </div>
-    </div>
-
-
-  )
+    return (
+        <div className='flex items-center'>
+            <div className="flex bg-slate-200 rounded px-2 mr-1">{rating}</div>
+            <div className="flex bg-slate-200 w-28">
+                {ratingArray.map((starType, index) => (
+                    <Star key={index} starType={starType} />
+                ))}
+            </div>
+        </div>
+    );
 }
+
 
 
 export default VenueRating;

@@ -32,23 +32,26 @@ function Venues() {
             {venues[0].map(venue => (
               <li key={venue.id} className="border rounded-lg h-64">
                 <Link to={`/SpecificVenue/${venue.id}`} className="block h-3/6 relative bg-white rounded-lg shadow-md overflow-hidden">
-                  <VenueRating rating={venue.rating}/>
                   <img className="w-full h-full object-cover object-center transform hover:scale-110 transition duration-75 ease-in hover:cursor-pointer" src={venue?.media[0]?.url} alt="" />
                 </Link>
                 <div className="flex flex-col p-3">
                   <div className="flex justify-between">
-                    <h1 className="font-medium text-xl">{venue.name}</h1>
+                    <h1 className="font-medium text-l overflow-auto">{venue.name}</h1>
                     <p>{venue.price}$</p>
                   </div>
                 </div>
-                <div className="p-3 flex flex-col">
+                <div className="px-3 flex flex-col">
                   <div className="flex justify-between">
-                    <h3 className="font-medium">{venue.location.city}</h3>
-                    <div className="">
-                      <h3 className="font-medium">{venue.maxGuests}</h3>
-                      <img className="h-5 w-5" src="../assets/multiple-users-silhouette.png" alt="Max amount of guests" />
-                    </div>
+                    <h3 className="font-medium overflow-auto">{venue.location.city || "city not specified"}</h3>
+
+
                   </div>
+                  <div className="flex justify-between">
+                      <h3 className="font-medium">{venue.maxGuests}</h3>
+                      <img className=" h-5 w-5 m-1" src="../assets/multiple-users-silhouette.png" alt="Max amount of guests" />
+                      <VenueRating rating={venue.rating}/>
+
+                    </div>
                 </div>
               </li>
             ))}

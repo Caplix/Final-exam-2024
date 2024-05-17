@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <div className="mt-8 ">
+    <div className="mt-8 text-white font-semibold ">
       <ul>
         <li className='mt-4'>
           <Link to="/">Home</Link>
