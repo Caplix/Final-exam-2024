@@ -31,6 +31,7 @@ const Navbar = () => {
         <li className='absolute bottom-10 left-10'>
           <Link to="/login">Log In</Link>
         </li>
+        
       </ul>
     </div>
   );

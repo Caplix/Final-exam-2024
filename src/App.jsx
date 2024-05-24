@@ -17,15 +17,12 @@ const App = () => {
   return (
     <Router>
       <div className="flex h-screen">
-        {/* Sidebar */}
         <Sidebar />
 
         <div className="flex flex-col w-full">
-          {/* SearchBar */}
           <SearchBar />
 
-          {/* Main content */}
-          <div className="flex-grow p-4 overflow-y-auto">
+          <div className="flex-grow overflow-y-auto">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/contact" element={<Contact />} />
