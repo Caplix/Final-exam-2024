@@ -1,0 +1,5 @@
+/* CustomCalendar.css */
+.react-calendar__tile.highlight {
+    background: #6c63ff !important;
+    color: white !important;
+}

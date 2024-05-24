@@ -1,40 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const ProfilePage = () => {
-  const [user, setUser] = useState(null);
+    const [bookings, setBookings] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-    // Fetch user data from local storage
-    const userData = localStorage.getItem('user') || sessionStorage.getItem('user');
-    console.log('User data from local/session storage:', userData); // Debugging log
-    if (userData) {
-      setUser(JSON.parse(userData));
+    useEffect(() => {
+        async function fetchBookings() {
+            try {
+                // Assuming you have an endpoint to fetch user's bookings
+                const response = await axios.get('https://v2.api.noroff.dev/holidaze/bookings');
+                setBookings(response.data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching bookings:', error);
+                setError('Error fetching bookings. Please try again later.');
+                setLoading(false);
+            }
+        }
+
+        fetchBookings();
+    }, []);
+
+    if (loading) {
+        return <p>Loading...</p>;
     }
-  }, []);
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
+    if (error) {
+        return <p>{error}</p>;
+    }
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <div className="flex items-center justify-center mb-4">
-          <img 
-            src={user.avatar.url } 
-            alt="Profile" 
-            className="w-24 h-24 rounded-full border-2 border-gray-300" 
-          />
+    return (
+        <div>
+            <h1 className="text-2xl font-semibold mb-4">Upcoming Bookings</h1>
+            {bookings.length === 0 ? (
+                <p>No upcoming bookings.</p>
+            ) : (
+                <ul>
+                    {bookings.map(booking => (
+                        <li key={booking.id}>
+                            <p>Venue: {booking.venueName}</p>
+                            <p>Date: {new Date(booking.dateFrom).toLocaleDateString()} to {new Date(booking.dateTo).toLocaleDateString()}</p>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
-        <div className="text-center">
-          <h2 className="text-xl font-semibold mb-2">{user.name}</h2>
-          <p className="text-gray-600 mb-4">{user.email}</p>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Edit Profile</button>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ProfilePage;
+
 
