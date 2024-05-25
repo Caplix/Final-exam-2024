@@ -30,8 +30,7 @@ const Register = () => {
       console.log(response.status === 201? "true": "false")
       if (response.status === 201) { 
         console.log("æpaoisjdpiogpepisgjD diopsfjposdfgjpswik:3")
-        // Assuming 201 for successful registration
-        // Automatically log the user in or redirect to login page
+
         const { user } = response.data.data;
         const userData = {
           name: user?.name,

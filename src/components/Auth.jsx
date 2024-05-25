@@ -4,8 +4,7 @@ export const API_OPTIONS = {
 
         "Content-Type": `application/json`,
 
-        "X-Noroff-API-Key": `${process.env.NOROFF_API_KEY}`,
+        "X-Noroff-API-Key": `${import.meta.env.VITE_NOROFF_API_KEY}`,
 
    }
 }
-

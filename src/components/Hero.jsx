@@ -12,7 +12,7 @@ const Hero = () => {
   useEffect(() => {
     axios.get('https://v2.api.noroff.dev/holidaze/venues')
       .then(res => {
-        const venuesArray = Object.values(res.data.data); // Convert object to array
+        const venuesArray = Object.values(res.data.data); 
         setVenues(venuesArray);
         setLoading(false);
       })

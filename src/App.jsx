@@ -1,4 +1,3 @@
-import "dotenv/config";
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
@@ -20,10 +19,8 @@ const App = () => {
     <Router>
       <div className="flex h-screen">
         <Sidebar />
-
         <div className="flex flex-col w-full">
           <SearchBar />
-
           <div className="flex-grow overflow-y-auto">
             <Routes>
               <Route path="/" element={<Home />} />

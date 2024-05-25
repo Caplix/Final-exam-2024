@@ -20,12 +20,11 @@ const SpecificVenue = () => {
                 const res = await axios.get(`https://v2.api.noroff.dev/holidaze/venues/${venueId}?_bookings=true`);
                 setVenue(res.data.data);
 
-                // Process bookings to get an array of all booked dates
                 const bookings = res.data.data.bookings;
                 const booked = bookings.reduce((acc, booking) => {
                     const start = new Date(booking.dateFrom);
                     const end = new Date(booking.dateTo);
-                    // Collect all dates within the booking range
+
                     for (let date = new Date(start); date <= end; date.setDate(date.getDate() + 1)) {
                         acc.push(new Date(date));
                     }
@@ -50,7 +49,6 @@ const SpecificVenue = () => {
 
     const tileDisabled = ({ date, view }) => {
         if (view === 'month') {
-            // Check if the date is in the bookedDates array
             return bookedDates.some(bookedDate => 
                 bookedDate.toDateString() === date.toDateString()
             );

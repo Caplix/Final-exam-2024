@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { API_OPTIONS } from "../components/Auth";
+import { data } from "autoprefixer";
 
 const CreateBooking = () => {
     const location = useLocation();
@@ -16,28 +17,24 @@ const CreateBooking = () => {
     const handleConfirmBooking = async () => {
         try {
             const response = await axios.post(
-                `https://v2.api.noroff.dev/holidaze/venues/${venue.id}/bookings`,
+                `https://v2.api.noroff.dev/holidaze/bookings/`,
                 {
+                    
                     dateFrom: startDate,
                     dateTo: endDate,
+                    guests: 3,
+                    venueId: venueId,
                 },
-                {
-                    headers: {
-                        'Authorization': `Bearer ${API_OPTIONS.apiKey}`,
-                        // Add other headers if needed
-                    },
-                }
+                API_OPTIONS
             );
-
-            if (response.status === 200) {
-                alert("Booking successful!");
+                console.log(response)
+            if (response.status === 201) {
+                
                 navigate('/Profile');
             } else {
-                alert("Failed to book the venue.");
             }
         } catch (error) {
             console.error(error);
-            alert("An error occurred during booking.");
         }
     };
 

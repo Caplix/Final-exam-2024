@@ -6,15 +6,14 @@ const SearchBar = () => {
   const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
-    // Fetch venues data from API
     const fetchVenues = async () => {
       try {
         const response = await fetch('https://v2.api.noroff.dev/holidaze/venues');
         const result = await response.json();
-        console.log('Fetched data:', result); // Debug log
+        console.log('Fetched data:', result); 
         if (Array.isArray(result.data)) {
           setVenues(result.data);
-          setFilteredVenues(result.data); // Initialize with all venues
+          setFilteredVenues(result.data); 
         } else {
           console.error('Data is not an array:', result.data);
           setVenues([]);
@@ -30,16 +29,15 @@ const SearchBar = () => {
     fetchVenues();
   }, []);
 
-  // Handle search input change
+ 
   const handleSearchInputChange = (event) => {
     const input = event.target.value;
     setSearchInput(input);
 
-    // Filter venues based on search input
     const filtered = venues.filter(venue =>
       venue.name.toLowerCase().includes(input.toLowerCase())
     );
-    console.log('Filtered venues:', filtered); // Debug log
+    console.log('Filtered venues:', filtered); 
     setFilteredVenues(filtered);
   };
 

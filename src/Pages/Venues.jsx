@@ -10,14 +10,14 @@ function Venues() {
     useEffect(() => {
         axios.get("https://v2.api.noroff.dev/holidaze/venues")
             .then(res => {
-                console.log(res.data); // Log the data array
-                const venuesArray = Object.values(res.data); // Convert object to array
-                setVenues(venuesArray); // Set venues array
-                setLoading(false); // Set loading to false after data is fetched
+                console.log(res.data); 
+                const venuesArray = Object.values(res.data); 
+                setVenues(venuesArray); 
+                setLoading(false); 
             })
             .catch(error => {
                 console.error(error);
-                setLoading(false); // Set loading to false in case of error
+                setLoading(false); 
             });
     }, []);
 
