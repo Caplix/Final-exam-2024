@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const SearchBar = () => {
   const [venues, setVenues] = useState([]);
@@ -6,38 +7,51 @@ const SearchBar = () => {
   const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
-    const fetchVenues = async () => {
-      try {
-        const response = await fetch('https://v2.api.noroff.dev/holidaze/venues');
-        const result = await response.json();
-        console.log('Fetched data:', result); 
-        if (Array.isArray(result.data)) {
-          setVenues(result.data);
-          setFilteredVenues(result.data); 
-        } else {
-          console.error('Data is not an array:', result.data);
-          setVenues([]);
-          setFilteredVenues([]);
+    const fetchAllVenues = async () => {
+      let allVenues = [];
+      let page = 1;
+      let fetchMore = true;
+
+      while (fetchMore) {
+        try {
+          const response = await fetch(`https://v2.api.noroff.dev/holidaze/venues?limit=100&page=${page}`);
+          const result = await response.json();
+          console.log('Fetched data:', result);
+
+          if (Array.isArray(result.data)) {
+            allVenues = allVenues.concat(result.data);
+
+            // Check if there are more pages to fetch or if fetched venues are less than 100
+            if (result.data.length < 100) {
+              fetchMore = false; // Stop fetching if fetched venues are less than 100
+            } else {
+              page+= 1;
+            }
+          } else {
+            console.error('Data is not an array:', result.data);
+            fetchMore = false; // Stop fetching on error
+          }
+        } catch (error) {
+          console.error('Error fetching venues:', error);
+          fetchMore = false; // Stop fetching on error
         }
-      } catch (error) {
-        console.error('Error fetching venues:', error);
-        setVenues([]);
-        setFilteredVenues([]);
       }
+
+      setVenues(allVenues);
+      setFilteredVenues(allVenues);
     };
 
-    fetchVenues();
+    fetchAllVenues();
   }, []);
 
- 
   const handleSearchInputChange = (event) => {
     const input = event.target.value;
     setSearchInput(input);
 
-    const filtered = venues.filter(venue =>
+    const filtered = venues.filter((venue) =>
       venue.name.toLowerCase().includes(input.toLowerCase())
     );
-    console.log('Filtered venues:', filtered); 
+    console.log('Filtered venues:', filtered);
     setFilteredVenues(filtered);
   };
 
@@ -46,18 +60,22 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search..."
-        className="w-full md:w-96 rounded px-4 py-2"
+        className="w-full rounded px-4 py-2"
         value={searchInput}
         onChange={handleSearchInputChange}
       />
       {searchInput && (
-        <div className="absolute left-0 right-0 top-full bg-purple-900 p-4 z-20 max-h-60 overflow-y-auto md:max-h-full md:w-96">
+        <div className="absolute left-0 right-0 top-full bg-purple-900  z-20 max-h-60 overflow-y-auto">
           {filteredVenues.length > 0 ? (
             filteredVenues.map((venue) => (
-              <div key={venue.id} className="bg-white p-4 rounded mb-2 overflow-hidden">
-                <h2 className="text-xl font-bold">{venue.name}</h2>
-                <p className="overflow-hidden text-ellipsis whitespace-nowrap">{venue.description}</p>
-              </div>
+              <Link key={venue.id} to={`/SpecificVenue/${venue.id}`}>
+                <div className="bg-white p-4 rounded mb-2 overflow-hidden">
+                  <h2 className="text-xl font-bold">{venue.name}</h2>
+                  <p className="overflow-hidden text-ellipsis whitespace-nowrap">
+                    {venue.description}
+                  </p>
+                </div>
+              </Link>
             ))
           ) : (
             <p className="text-white">No results found.</p>
