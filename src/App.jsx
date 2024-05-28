@@ -11,6 +11,7 @@ import Register from './Pages/Register';
 import LogIn from './Pages/LogIn';
 import SpecificVenue from './Pages/SpecificVenue';
 import SearchBar from './components/SearchBar';
+import AddVenueForm from './components/CreateVenue';
 
 
 
@@ -29,6 +30,8 @@ const App = () => {
               <Route path="/Profile" element={<Profile />} />
               <Route path="/Venues" element={<Venues />} />
               <Route path="/CreateBooking/:venueId" element={<CreateBooking />} />
+              <Route path="/CreateVenue" element={<AddVenueForm />} />
+
               <Route path="/Register" element={<Register />} />
               <Route path="/LogIn" element={<LogIn />} />
               <Route path="/SpecificVenue/:venueId" element={<SpecificVenue/>}/>

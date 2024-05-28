@@ -26,7 +26,7 @@ function Venues() {
     }
 
     return (
-        <div className="mt-6">
+        <div className="mt-6 mx-2">
           <h1 className="text-center">Venues List</h1>
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {venues[0].map(venue => (
@@ -47,8 +47,7 @@ function Venues() {
 
                   </div>
                   <div className="flex justify-between">
-                      <h3 className="font-medium">{venue.maxGuests}</h3>
-                      <img className=" h-5 w-5 m-1" src="../assets/multiple-users-silhouette.png" alt="Max amount of guests" />
+                      <h3 className="font-medium">Rooms: {venue.maxGuests}</h3>
                       <VenueRating rating={venue.rating}/>
 
                     </div>

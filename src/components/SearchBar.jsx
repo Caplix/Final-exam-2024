@@ -46,15 +46,15 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search..."
-        className="w-96 rounded px-4 py-2"
+        className="w-full md:w-96 rounded px-4 py-2"
         value={searchInput}
         onChange={handleSearchInputChange}
       />
       {searchInput && (
-        <div className="absolute left-0 right-0 top-full bg-purple-900 p-4 z-20 h-80 overflow-y-auto">
+        <div className="absolute left-0 right-0 top-full bg-purple-900 p-4 z-20 max-h-60 overflow-y-auto md:max-h-full md:w-96">
           {filteredVenues.length > 0 ? (
             filteredVenues.map((venue) => (
-              <div key={venue.id} className="bg-white p-4 rounded mb-2 h-[5.5rem] overflow-hidden">
+              <div key={venue.id} className="bg-white p-4 rounded mb-2 overflow-hidden">
                 <h2 className="text-xl font-bold">{venue.name}</h2>
                 <p className="overflow-hidden text-ellipsis whitespace-nowrap">{venue.description}</p>
               </div>
@@ -69,5 +69,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-
-
