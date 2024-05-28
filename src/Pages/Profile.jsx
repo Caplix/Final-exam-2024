@@ -68,13 +68,6 @@ const ProfilePage = () => {
         }
     };
 
-    const handleEditVenue = (venueId) => {
-        // Handle edit functionality
-    };
-
-    const handleDeleteVenue = (venueId) => {
-        // Handle delete functionality
-    };
 
     if (loading) {
         return <p className="text-center mt-5 text-lg">Loading...</p>;

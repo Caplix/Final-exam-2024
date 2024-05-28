@@ -38,11 +38,9 @@ const CreateBooking = () => {
                 navigate('/profile');
             } else {
                 console.error('Unexpected response status:', response.status);
-                // Optionally, display a user-friendly message here
             }
         } catch (error) {
             console.error('Error confirming booking:', error);
-            // Optionally, display a user-friendly message here
         }
     };
 

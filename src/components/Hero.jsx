@@ -18,7 +18,7 @@ const Hero = () => {
       })
       .catch(error => {
         console.error('Error fetching venues:', error);
-        setError(error); // Set the error state
+        setError(error); 
         setLoading(false);
       });
   }, []);

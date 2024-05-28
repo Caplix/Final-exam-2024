@@ -6,7 +6,6 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check if the user is logged in by retrieving data from localStorage
     const user = JSON.parse(localStorage.getItem('user'));
     setIsLoggedIn(user && user.accessToken);
   }, []);
@@ -16,7 +15,6 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    // Clear user data from localStorage on logout
     localStorage.removeItem('user');
     setIsLoggedIn(false);
   };

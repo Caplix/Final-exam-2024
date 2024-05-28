@@ -57,9 +57,7 @@ const SpecificVenue = () => {
 
     const handleSaveVenue = async (updatedVenue) => {
         try {
-            // Send updated venue data to the server
             await axios.put(`https://v2.api.noroff.dev/holidaze/venues/${venueId}`, updatedVenue);
-            // Optionally, you can update the venue state here to reflect the changes immediately
             setVenue(updatedVenue);
         } catch (error) {
             console.error(error);
@@ -88,10 +86,9 @@ const SpecificVenue = () => {
             if (selectedDates.length === 2) {
                 const [start, end] = selectedDates.sort((a, b) => a - b);
                 if (date >= start && date <= end) {
-                    return 'bg-blue-200'; // Apply Tailwind CSS class for highlighting
+                    return 'bg-blue-200'; 
                 }
             } else if (selectedDates.length === 1 && date.getTime() === selectedDates[0].getTime()) {
-                // Apply Tailwind CSS class for the single selected date
                 return 'bg-green-200';
             }
         }

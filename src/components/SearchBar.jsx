@@ -21,19 +21,18 @@ const SearchBar = () => {
           if (Array.isArray(result.data)) {
             allVenues = allVenues.concat(result.data);
 
-            // Check if there are more pages to fetch or if fetched venues are less than 100
             if (result.data.length < 100) {
-              fetchMore = false; // Stop fetching if fetched venues are less than 100
+              fetchMore = false; 
             } else {
               page+= 1;
             }
           } else {
             console.error('Data is not an array:', result.data);
-            fetchMore = false; // Stop fetching on error
+            fetchMore = false; 
           }
         } catch (error) {
           console.error('Error fetching venues:', error);
-          fetchMore = false; // Stop fetching on error
+          fetchMore = false; 
         }
       }
 
