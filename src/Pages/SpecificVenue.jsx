@@ -88,12 +88,17 @@ const SpecificVenue = () => {
             if (selectedDates.length === 2) {
                 const [start, end] = selectedDates.sort((a, b) => a - b);
                 if (date >= start && date <= end) {
-                    return 'highlight';
+                    return 'bg-blue-200'; // Apply Tailwind CSS class for highlighting
                 }
+            } else if (selectedDates.length === 1 && date.getTime() === selectedDates[0].getTime()) {
+                // Apply Tailwind CSS class for the single selected date
+                return 'bg-green-200';
             }
         }
         return null;
     };
+    
+    
 
     const handleDateChange = (date) => {
         if (selectedDates.length === 0) {
@@ -148,48 +153,50 @@ const SpecificVenue = () => {
                 </div>
             </div>
             <div className="bg-gray-100 p-4 rounded-lg mt-4">
-            <h2 className="text-xl font-semibold mb-4">Location & Amenities</h2>
-            <div className="mb-4">
-            <h3 className="font-semibold">Location</h3>
-            <p className="text-gray-700">{venue.location.address ? venue.location.address : 'Address not available'}, {venue.location.city}, {venue.location.zip}, {venue.location.country}</p>
-            </div>
-            <div>
-            <h3 className="font-semibold">Amenities</h3>
-            <ul className="list-disc list-inside text-gray-700">
-            <li>WiFi: {venue.meta.wifi ? 'Available' : 'Not available'}</li>
-            <li>Parking: {venue.meta.parking ? 'Available' : 'Not available'}</li>
-            <li>Breakfast: {venue.meta.breakfast ? 'Available' : 'Not available'}</li>
-            <li>Pets: {venue.meta.pets ? 'Allowed' : 'Not allowed'}</li>
-            </ul>
-            </div>
+                <h2 className="text-xl font-semibold mb-4">Location & Amenities</h2>
+                <div className="mb-4">
+                    <h3 className="font-semibold">Location</h3>
+                    <p className="text-gray-700">{venue.location.address ? venue.location.address : 'Address not available'}, {venue.location.city}, {venue.location.zip}, {venue.location.country}</p>
+                </div>
+                <div>
+                    <h3 className="font-semibold">Amenities</h3>
+                    <ul className="list-disc list-inside text-gray-700">
+                        <li>WiFi: {venue.meta.wifi ? 'Available' : 'Not available'}</li>
+                        <li>Parking: {venue.meta.parking ? 'Available' : 'Not available'}</li>
+                        <li>Breakfast: {venue.meta.breakfast ? 'Available' : 'Not available'}</li>
+                        <li>Pets: {venue.meta.pets ? 'Allowed' : 'Not allowed'}</li>
+                    </ul>
+                </div>
             </div>
             <div className="bg-gray-100 p-4 rounded-lg mt-4">
-            <h2 className="text-xl font-semibold mb-4">Available Dates</h2>
-            <Calendar 
-                            tileDisabled={tileDisabled}
-                            tileClassName={tileClassName}
-                            onClickDay={handleDateChange}
-                        />
-            {selectedDates.length > 0 && (
-            <div className="mt-4">
-            <p>Selected Dates:</p>
-            <ul>
-            {selectedDates.map(date => (
-            <li key={date.toISOString()}>{date.toDateString()}</li>
-            ))}
-            </ul>
-            </div>
-            )}
+                <h2 className="text-xl font-semibold mb-4">           
+                Available Dates</h2>
+                <Calendar 
+                    tileDisabled={tileDisabled}
+                    tileClassName={tileClassName}
+                    onClickDay={handleDateChange}
+                />
+                {selectedDates.length > 0 && (
+                    <div className="mt-4">
+                        <p>Selected Dates:</p>
+                        <ul>
+                            {selectedDates.map(date => (
+                                <li key={date.toISOString()}>{date.toDateString()}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
             {showEditModal && (
-            <EditVenueModal 
-                            venue={venue} 
-                            onClose={handleCloseEditModal} 
-                            onSave={handleSaveVenue} 
-                        />
+                <EditVenueModal 
+                    venue={venue} 
+                    onClose={handleCloseEditModal} 
+                    onSave={handleSaveVenue} 
+                />
             )}
-            </div>
-            );
-            };
+        </div>
+    );
+};
 
-            export default SpecificVenue;
+export default SpecificVenue;
+
