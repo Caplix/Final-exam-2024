@@ -57,7 +57,7 @@ const Navbar = () => {
             <Link to="/logout" onClick={handleLogout}>Logout</Link>
           </li>
         ) : (
-          <li className='mt-4 md:hidden'>
+          <li className='mt-4'>
             <Link to="/login">Login</Link>
           </li>
         )}
