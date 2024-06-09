@@ -1,8 +1,39 @@
-# React + Vite
+# Holidaze, Final exam 2024
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+A booking site letting users register and book and create venues to stay at.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Built With
+
+- [React.js](https://reactjs.org/)
+- [Axios](https://axios-http.com/)
+- [Tailwind](https://tailwindcss.com/)
+
+## Getting Started
+
+### Installing
+
+1. Clone the repo:
+
+```bash
+git clone git@github.com:Caplix/Final-exam-2024.git
+```
+
+2. Install the dependencies:
+
+```
+npm install
+```
+
+### Running
+
+To run the app, run the following commands:
+
+```bash
+npm run dev
+```
+
+## Contact
+
+[LinkedIn](https://www.linkedin.com/in/kristoffer-myhre-76511b27a/)
